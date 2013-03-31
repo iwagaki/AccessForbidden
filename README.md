@@ -6,8 +6,8 @@ A Google Chrome extension to cancel loading registerred sites.
 Install
 -------
 
-- Download *.crx to your local storage.
-- Open Tools - Extensions, then drop *.crx into the page.
+- Download a *.crx to your local storage.
+- Open Tools - Extensions, then drop the *.crx into the page.
 
 Example
 -------
