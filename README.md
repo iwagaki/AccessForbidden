@@ -14,9 +14,8 @@ Example
 
 Paste the following lines to "Forbidden URLs" in the option page of the extension.
 
-^https://twitter\.com.*
-^https://www\.facebook\.com.*
-
+    ^https://twitter\.com.*
+    ^https://www\.facebook\.com.*
 
 License
 -------
