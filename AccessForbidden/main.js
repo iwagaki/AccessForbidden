@@ -3,26 +3,30 @@ function trim(str) {
 }
 
 chrome.storage.local.get([
-  'urls'
+  'blacklist',
+  'whitelist'
 ], function(items) {
-    var arrayOfLines = items['urls'].split('\n');
-    for (var i = 0; i < arrayOfLines.length; i++) {
-        var regex = trim(arrayOfLines[i]);
-        var isWhiteList = false;
-        if (regex != '') {
-            if (regex.substring(0, 1) == '!') {
-                regex = regex.substring(1, regex.length);
-                isWhiteList = true;
-            }
-            var re = new RegExp(regex);
+    var arrayOfBlackList = items['blacklist'].split('\n');
+    var arrayOfWhiteList = items['whitelist'].split('\n');
 
+    for (var i = 0; i < arrayOfWhiteList.length; i++) {
+        var regex = trim(arrayOfWhiteList[i]);
+        if (regex != '') {
+            var re = new RegExp(regex);
             if (re.test(document.URL)) {
-                if (isWhiteList) {
-                    break;
-                } else { 
-                    window.stop();
-                    break;
-                }
+                return;
+            }
+        }
+    }
+
+    for (var i = 0; i < arrayOfBlackList.length; i++) {
+        var regex = trim(arrayOfBlackList[i]);
+        if (regex != '') {
+            var re = new RegExp(regex);
+            if (re.test(document.URL)) {
+                window.stop();
+                window.location = 'about:blank';
+                return;
             }
         }
     }
